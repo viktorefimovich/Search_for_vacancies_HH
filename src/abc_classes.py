@@ -5,7 +5,7 @@ class APIParser(ABC):
     """Абстрактный класс для работы с API сайта"""
 
     @abstractmethod
-    def get_vacancies(self, keyword: str, page: int = 0, per_page: int = 10):
+    def get_vacancies(self, keyword: str, page: int = 0, per_page: int = 100):
         """Абстрактный метод получения вакансий с API сайта по ключевому слову"""
 
         pass

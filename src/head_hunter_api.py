@@ -23,7 +23,7 @@ class HeadHunterAPI(APIParser):
         except Exception as e:
             print(f"Ошибка подключения: {e}")
 
-    def get_vacancies(self, keyword: str, page: int = 0, per_page: int = 10):
+    def get_vacancies(self, keyword: str, page: int = 0, per_page: int = 100):
         """Метод получения вакансий в формате JSON с API сайта по ключевому слову"""
 
         params = {
