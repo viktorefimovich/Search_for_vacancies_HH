@@ -31,6 +31,7 @@ class HeadHunterAPI(APIParser):
             "page": page,
             "per_page": per_page
         }
+        self.__connect()
         response = requests.get(self.BASE_URL, params=params)
         if response.status_code == 200:
             return response.json().get("items", [])
