@@ -1,3 +1,5 @@
+from typing import Any
+
 import requests
 
 from src.abc_classes import APIParser
@@ -13,7 +15,7 @@ class HeadHunterAPI(APIParser):
 
         self.__connect()
 
-    def __connect(self):
+    def __connect(self) -> Any:
         """Метод подключения к API HH.ru"""
 
         try:
@@ -23,7 +25,7 @@ class HeadHunterAPI(APIParser):
         except Exception as e:
             print(f"Ошибка подключения: {e}")
 
-    def get_vacancies(self, keyword: str, page: int = 0, per_page: int = 100):
+    def get_vacancies(self, keyword: str, page: int = 0, per_page: int = 100) -> Any:
         """Метод получения вакансий в формате JSON с API сайта по ключевому слову"""
 
         params = {
