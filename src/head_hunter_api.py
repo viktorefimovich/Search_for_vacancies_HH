@@ -8,38 +8,31 @@ from src.abc_classes import APIParser
 class HeadHunterAPI(APIParser):
     """Класс для ратобы с API сайта HH.ru"""
 
-    BASE_URL = "https://api.hh.ru/vacancies"
-
-    def __init__(self) -> None:
-        """Метод инициализации объекта класса"""
-
-        self.__connect()
-
-    def __connect(self) -> Any:
+    @staticmethod
+    def __connect(params: dict) -> Any:
         """Метод подключения к API HH.ru"""
 
         try:
-            response = requests.get(self.BASE_URL)
+            url = "https://api.hh.ru/vacancies"
+            headers = {"User-Agent": "HH-User-Agent"}
+            response = requests.get(url, headers=headers, params=params)
             if response.status_code != 200:
                 raise ConnectionError("Не удалось подключиться к API hh.ru")
         except Exception as e:
             print(f"Ошибка подключения: {e}")
 
-    def get_vacancies(self, keyword: str, page: int = 0, per_page: int = 100) -> Any:
+    @classmethod
+    def get_vacancies(cls, keyword: str) -> Any:
         """Метод получения вакансий в формате JSON с API сайта по ключевому слову"""
 
-        params = {
-            "text": keyword,
-            "page": page,
-            "per_page": per_page
-        }
-        self.__connect()
-        response = requests.get(self.BASE_URL, params=params)
-        if response.status_code == 200:
-            return response.json().get("items", [])
-        else:
-            raise Exception(f"Ошибка получения данных: {response.status_code}")
-
+        params = {"text": keyword, "page": 0, "per_page": 100}
+        vacancies = []
+        while params.get("page") != 20:
+            print("#", end="")
+            vacancies_page = cls.__connect(params).json()["items"]
+            vacancies.extend(vacancies_page)
+            params["page"] += 1
+        return vacancies
 
 # if __name__ == "__main__":
 #     hh_api = HeadHunterAPI()
