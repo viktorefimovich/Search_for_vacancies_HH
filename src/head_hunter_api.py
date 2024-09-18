@@ -10,7 +10,7 @@ class HeadHunterAPI(APIParser):
 
     BASE_URL = "https://api.hh.ru/vacancies"
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Метод инициализации объекта класса"""
 
         self.__connect()
