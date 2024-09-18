@@ -37,3 +37,8 @@ class HeadHunterAPI(APIParser):
             return response.json().get("items", [])
         else:
             raise Exception(f"Ошибка получения данных: {response.status_code}")
+
+
+# if __name__ == "__main__":
+#     hh_api = HeadHunterAPI()
+#     print(hh_api.get_vacancies("Python"))
