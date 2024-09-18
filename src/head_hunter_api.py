@@ -43,4 +43,4 @@ class HeadHunterAPI(APIParser):
 
 # if __name__ == "__main__":
 #     hh_api = HeadHunterAPI()
-#     print(hh_api.get_vacancies("Python"))
+#     print(hh_api.get_vacancies("Python", per_page=1))
