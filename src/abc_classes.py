@@ -5,9 +5,17 @@ from typing import Any
 class APIParser(ABC):
     """Абстрактный класс для работы с API сайта"""
 
+    @staticmethod
     @abstractmethod
-    def get_vacancies(self, keyword: str) -> Any:
-        """Абстрактный метод получения вакансий с API сайта по ключевому слову"""
+    def __connect(params: dict) -> Any:
+        """Приватный метод для подключения к API"""
+
+        pass
+
+    @classmethod
+    @abstractmethod
+    def get_vacancies(cls, keyword: str) -> list:
+        """Метод для получения вакансий по ключевому слову"""
 
         pass
 

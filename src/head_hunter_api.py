@@ -18,22 +18,24 @@ class HeadHunterAPI(APIParser):
             response = requests.get(url, headers=headers, params=params)
             if response.status_code != 200:
                 raise ConnectionError("Не удалось подключиться к API hh.ru")
+            return response
         except Exception as e:
             print(f"Ошибка подключения: {e}")
 
     @classmethod
-    def get_vacancies(cls, keyword: str) -> Any:
+    def get_vacancies(cls, keyword: str) -> list:
         """Метод получения вакансий в формате JSON с API сайта по ключевому слову"""
 
         params = {"text": keyword, "page": 0, "per_page": 100}
         vacancies = []
         while params.get("page") != 20:
-            print("#", end="")
+            print("*", end="")
             vacancies_page = cls.__connect(params).json()["items"]
             vacancies.extend(vacancies_page)
             params["page"] += 1
         return vacancies
 
+
 # if __name__ == "__main__":
-#     hh_api = HeadHunterAPI()
-#     print(hh_api.get_vacancies("Python", per_page=1))
+#     vacancies_ = HeadHunterAPI.get_vacancies("Python")
+#     print(vacancies_)
