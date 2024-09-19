@@ -15,6 +15,8 @@ class JSONWorker(FilesWork):
     __path_to_file: Path
 
     def __init__(self, file_name: str = "vacancies.json") -> None:
+        """Метод инициализации объктов класса"""
+
         self.__file_name = self.__check_and_get_file_name(file_name)
         self.__path_to_file = Path(ROOTPATH, f"{self.__file_name}")
 
@@ -50,6 +52,8 @@ class JSONWorker(FilesWork):
 
     @staticmethod
     def __check_and_get_file_name(file_name: str) -> str:
+        """Метод проверки и получения имени файла"""
+        
         if file_name[-5:] != ".json":
             return f"{file_name}.json"
         return file_name
