@@ -24,6 +24,12 @@ class FilesWork(ABC):
     """Абстрактный класс для работы с файлами"""
 
     @abstractmethod
+    def get_from_file(self) -> list[dict]:
+        """Метод для получения данных из файла"""
+
+        pass
+
+    @abstractmethod
     def save_to_file(self, vacancies: list[dict]) -> None:
         """Метод для сохранения в файл списка вакансий"""
 
@@ -32,12 +38,6 @@ class FilesWork(ABC):
     @abstractmethod
     def add_to_file(self, vacancies: list[dict]) -> None:
         """Метод для добавления в файл вакансий без дублирования"""
-
-        pass
-
-    @abstractmethod
-    def get_from_file(self) -> list[dict]:
-        """Метод для получения данных из файла"""
 
         pass
 
