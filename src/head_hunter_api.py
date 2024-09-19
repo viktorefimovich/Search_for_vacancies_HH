@@ -29,7 +29,7 @@ class HeadHunterAPI(APIParser):
         params = {"text": keyword, "page": 0, "per_page": 100}
         vacancies = []
         while params.get("page") != 20:
-            print("*", end="")
+            print("-", end="")
             vacancies_page = cls.__connect(params).json()["items"]
             vacancies.extend(vacancies_page)
             params["page"] += 1
