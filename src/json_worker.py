@@ -53,7 +53,7 @@ class JSONWorker(FilesWork):
     @staticmethod
     def __check_and_get_file_name(file_name: str) -> str:
         """Метод проверки и получения имени файла"""
-        
+
         if file_name[-5:] != ".json":
             return f"{file_name}.json"
         return file_name
