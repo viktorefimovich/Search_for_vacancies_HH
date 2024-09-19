@@ -36,6 +36,6 @@ class HeadHunterAPI(APIParser):
         return vacancies
 
 
-# if __name__ == "__main__":
-#     vacancies_ = HeadHunterAPI.get_vacancies("Python")
-#     print(vacancies_)
+if __name__ == "__main__":
+    vacancies_ = HeadHunterAPI.get_vacancies("Python")
+    print(vacancies_)
