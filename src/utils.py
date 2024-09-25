@@ -7,7 +7,7 @@ from src.vacancy import Vacancy
 ROOTPATH = Path(__file__).resolve().parent.parent
 
 
-def file_data_info() -> list:
+def get_file_data_info() -> list:
     """Функция возвращает список файлов с вакансиями в папке data"""
 
     path = Path(ROOTPATH, "data")
