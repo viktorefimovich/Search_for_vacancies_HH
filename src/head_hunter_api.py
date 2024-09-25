@@ -34,8 +34,3 @@ class HeadHunterAPI(APIParser):
             vacancies.extend(vacancies_page)
             params["page"] += 1
         return vacancies
-
-
-if __name__ == "__main__":
-    vacancies_ = HeadHunterAPI.get_vacancies("Python")
-    print(vacancies_)

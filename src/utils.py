@@ -28,7 +28,8 @@ def get_file_data_info() -> list:
             elif file_.suffix == ".xlsx":
                 checking_file = ExcelWorker(file_.name)
             else:
-                raise TypeError
+                continue
+
             file_data = checking_file.get_from_file()
             if len(file_data) == 0:
                 raise TypeError

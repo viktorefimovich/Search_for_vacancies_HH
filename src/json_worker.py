@@ -12,24 +12,28 @@ class JSONWorker(FilesWork):
     """Класс для работы с json файлами"""
 
     __file_name: str
-    __path_to_file: Path
+    path_to_file: Path
 
     def __init__(self, file_name: str = "vacancies.json") -> None:
         """Метод инициализации объктов класса"""
 
         self.__file_name = self.__check_and_get_file_name(file_name)
-        self.__path_to_file = Path(ROOTPATH, f"{self.__file_name}")
+        self.path_to_file = Path(ROOTPATH, "data", f"{self.__file_name}")
 
     def get_from_file(self) -> Any:
         """Метод для получения данных из файла"""
 
-        with open(self.__path_to_file, "r") as file:
-            return json.load(file)
+        try:
+            with open(self.path_to_file, "r", encoding='utf-8') as file:
+                vacancies = json.load(file)
+                return vacancies
+        except (FileNotFoundError, json.JSONDecodeError):
+            return []
 
     def save_to_file(self, vacancies: list[dict]) -> None:
         """Метод для сохранения в файл списка вакансий"""
 
-        with open(self.__path_to_file, "w") as file:
+        with open(self.path_to_file, "w", encoding='utf-8') as file:
             json.dump(vacancies, file, indent=4, ensure_ascii=False)
 
     def add_to_file(self, vacancies: list[dict]) -> None:

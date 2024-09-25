@@ -42,9 +42,7 @@ class UI:
         if len(vacancies_objects) == 0:
             print("Вакансий по вашему запросу не найдено, попробуйте снова")
             return UI.get_vacancies_HH()
-        print()
         print(f"Количество загруженных вакансий - {len(vacancies_objects)}")
-        print()
         return UI.vacancies_working(vacancies_objects)
 
     @staticmethod
@@ -108,13 +106,12 @@ class UI:
             try:
                 choice = int(input("Введите цифру от 1 до 5 для выбора действия: "))
             except ValueError:
-                print("Повторите ввод - укажите целое число от 1 до 5")
+                print("Повторите ввод!")
 
         match choice:
 
             case 1:
                 UI.save_to_file(vacancies)
-                return UI.vacancies_working(vacancies)
 
             case 2:
                 while True:
@@ -158,9 +155,5 @@ class UI:
         else:
             json_saver = JSONWorker()
             file_name = "vacancies"
-        try:
-            json_saver.add_to_file(vacancies_to_save)
-            print(f"Данные успешно добавлены в файл {file_name}.json")
-        except (FileNotFoundError, KeyError, TypeError):
-            json_saver.save_to_file(vacancies_to_save)
-            print(f"Данные успешно сохранены в файл {file_name}.json")
+        json_saver.save_to_file(vacancies_to_save)
+        print(f"Данные успешно сохранены в файл {file_name}.json")

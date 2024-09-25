@@ -214,7 +214,7 @@ class Vacancy:
     def get_list_id_vacancies(vacancies: list) -> list:
         """Метод получения списка ID из списка вакансий"""
 
-        return [vacancy.id for vacancy in vacancies]
+        return [vacancy.id if isinstance(vacancy, Vacancy) else vacancy["id"] for vacancy in vacancies]
 
     @staticmethod
     def get_top_salary_vacancies(vacancies: list, top_n: int) -> list:
