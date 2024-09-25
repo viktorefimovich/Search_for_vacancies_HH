@@ -1,5 +1,5 @@
 import sys
-from typing import Any
+from typing import Any, Union
 
 from src.excel_worker import ExcelWorker
 from src.head_hunter_api import HeadHunterAPI
@@ -67,7 +67,7 @@ class UI:
     def file_working(file_name: str) -> Any:
         """Функция интерфейса для выбора опций загрузки данных о вакансиях из файла"""
 
-        file_worker = None
+        file_worker: Union[JSONWorker, ExcelWorker]
         if file_name[-5:] == ".json":
             file_worker = JSONWorker(file_name)
         elif file_name[-5:] == ".xlsx":

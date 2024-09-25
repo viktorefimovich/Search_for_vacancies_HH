@@ -26,9 +26,9 @@ class HeadHunterAPI(APIParser):
     def get_vacancies(cls, keyword: str) -> list:
         """Метод получения вакансий в формате JSON с API сайта по ключевому слову"""
 
-        params = {"text": keyword, "page": 0, "per_page": 100}
+        params: dict = {"text": keyword, "page": 0, "per_page": 100}
         vacancies = []
-        while params.get("page") != 20:
+        while params["page"] != 20:
             print("-", end="")
             vacancies_page = cls.__connect(params).json()["items"]
             vacancies.extend(vacancies_page)
