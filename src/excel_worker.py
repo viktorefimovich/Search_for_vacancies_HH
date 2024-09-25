@@ -3,7 +3,6 @@ from typing import Any
 
 import pandas as pd
 
-
 from src.abc_classes import FilesWork
 
 ROOTPATH = Path(__file__).resolve().parent.parent
