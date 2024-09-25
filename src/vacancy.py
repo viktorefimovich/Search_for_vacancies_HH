@@ -95,7 +95,7 @@ class Vacancy:
             raise TypeError
 
     def get_salary(self) -> str:
-        """Метод возвращает значение зарплаты в формате: От ... до ... """
+        """Метод возвращает значение зарплаты в формате: От ... до ..."""
 
         return self.salary_string
 

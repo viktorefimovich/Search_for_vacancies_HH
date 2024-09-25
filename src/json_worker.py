@@ -24,7 +24,7 @@ class JSONWorker(FilesWork):
         """Метод для получения данных из файла"""
 
         try:
-            with open(self.path_to_file, "r", encoding='utf-8') as file:
+            with open(self.path_to_file, "r", encoding="utf-8") as file:
                 vacancies = json.load(file)
                 return vacancies
         except (FileNotFoundError, json.JSONDecodeError):
@@ -33,7 +33,7 @@ class JSONWorker(FilesWork):
     def save_to_file(self, vacancies: list[dict]) -> None:
         """Метод для сохранения в файл списка вакансий"""
 
-        with open(self.path_to_file, "w", encoding='utf-8') as file:
+        with open(self.path_to_file, "w", encoding="utf-8") as file:
             json.dump(vacancies, file, indent=4, ensure_ascii=False)
 
     def add_to_file(self, vacancies: list[dict]) -> None:
