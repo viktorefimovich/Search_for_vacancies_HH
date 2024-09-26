@@ -34,7 +34,7 @@ def test_add_to_file(temp_excel_file: str) -> None:
 
     new_vacancies = [
         {"id": "2", "name": "Java Developer", "salary": 130000},  # дубликат
-        {"id": "3", "name": "Go Developer", "salary": 110000},    # новая вакансия
+        {"id": "3", "name": "Go Developer", "salary": 110000},  # новая вакансия
     ]
 
     new_vacancies = [{**vacancy, "id": str(vacancy["id"])} for vacancy in new_vacancies]
