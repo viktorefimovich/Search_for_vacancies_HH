@@ -19,9 +19,7 @@ def test_connect_success(mock_get: Any) -> None:
     response = HeadHunterAPI._HeadHunterAPI__connect(params)
 
     mock_get.assert_called_once_with(
-        "https://api.hh.ru/vacancies",
-        headers={"User-Agent": "HH-User-Agent"},
-        params=params
+        "https://api.hh.ru/vacancies", headers={"User-Agent": "HH-User-Agent"}, params=params
     )
     assert response.status_code == 200
 
