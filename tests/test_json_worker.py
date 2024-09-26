@@ -1,6 +1,6 @@
 import json
 from typing import Any
-from unittest.mock import patch, mock_open
+from unittest.mock import mock_open, patch
 
 import pytest
 
