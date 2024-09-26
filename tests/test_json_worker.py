@@ -70,6 +70,7 @@ def test_save_to_file(json_worker):
 
 @patch("src.vacancy.Vacancy.get_list_id_vacancies", return_value=['123'])
 def test_add_to_file_no_duplicates(mock_get_list_id_vacancies, json_worker):
+
     """Тестируем, что метод add_to_file не добавляет дублирующиеся вакансии"""
     vacancies = [{'id': '123', 'title': 'Python Developer'}]
     with patch("builtins.open", mock_open(read_data=json.dumps(vacancies))):
@@ -79,6 +80,7 @@ def test_add_to_file_no_duplicates(mock_get_list_id_vacancies, json_worker):
 
 def test_delete_from_file(json_worker):
     """Тестируем, что метод delete_from_file очищает файл"""
+
     with patch("builtins.open", mock_open()) as mock_file:
         json_worker.delete_from_file()
         mock_file.assert_called_once_with(json_worker.path_to_file, 'w', encoding='utf-8')
