@@ -1,4 +1,5 @@
 import json
+from typing import Any
 from unittest.mock import patch, mock_open
 
 import pytest
@@ -6,7 +7,7 @@ import pytest
 from src.json_worker import JSONWorker
 
 
-def test_get_from_file_empty_file(json_worker):
+def test_get_from_file_empty_file(json_worker: JSONWorker) -> None:
     """Тест: метод возвращает пустой список, если файл пустой"""
 
     empty_file_data = ""
@@ -17,7 +18,7 @@ def test_get_from_file_empty_file(json_worker):
         mock_file.assert_called_once_with(json_worker.path_to_file, 'r', encoding='utf-8')
 
 
-def test_get_from_file_invalid_json(json_worker):
+def test_get_from_file_invalid_json(json_worker: JSONWorker) -> None:
     """Тест: метод возвращает пустой список, если файл содержит некорректный JSON (JSONDecodeError)"""
 
     invalid_json_data = "{invalid_json: true}"
@@ -29,7 +30,7 @@ def test_get_from_file_invalid_json(json_worker):
             mock_file.assert_called_once_with(json_worker.path_to_file, 'r', encoding='utf-8')
 
 
-def test_get_from_file_file_not_found(json_worker):
+def test_get_from_file_file_not_found(json_worker: JSONWorker) -> None:
     """Тест: метод возвращает пустой список, если файл не существует (FileNotFoundError)"""
 
     with patch("builtins.open", side_effect=FileNotFoundError) as mock_file:
@@ -38,7 +39,7 @@ def test_get_from_file_file_not_found(json_worker):
         mock_file.assert_called_once_with(json_worker.path_to_file, 'r', encoding='utf-8')
 
 
-def test_get_from_file_with_data(json_worker):
+def test_get_from_file_with_data(json_worker: JSONWorker) -> None:
     """Тестируем, что метод get_from_file возвращает данные из файла"""
 
     data = [{'id': '12345', 'title': 'Python Developer'}]
@@ -48,7 +49,7 @@ def test_get_from_file_with_data(json_worker):
         mock_file.assert_called_once_with(json_worker.path_to_file, 'r', encoding='utf-8')
 
 
-def test_get_from_file_with_valid_data(json_worker):
+def test_get_from_file_with_valid_data(json_worker: JSONWorker) -> None:
     """Тест: метод возвращает данные, если файл существует и содержит валидный JSON"""
 
     test_data = [{'id': '1', 'title': 'Developer'}, {'id': '2', 'title': 'Designer'}]
@@ -59,7 +60,7 @@ def test_get_from_file_with_valid_data(json_worker):
         mock_file.assert_called_once_with(json_worker.path_to_file, 'r', encoding='utf-8')
 
 
-def test_save_to_file(json_worker):
+def test_save_to_file(json_worker: JSONWorker) -> None:
     """Тестируем, что метод save_to_file сохраняет данные в файл"""
 
     vacancies = [{'id': '12345', 'title': 'Python Developer'}]
@@ -69,7 +70,7 @@ def test_save_to_file(json_worker):
 
 
 @patch("src.vacancy.Vacancy.get_list_id_vacancies", return_value=['123'])
-def test_add_to_file_no_duplicates(mock_get_list_id_vacancies, json_worker):
+def test_add_to_file_no_duplicates(mock_get_list_id_vacancies: Any, json_worker: JSONWorker) -> None:
 
     """Тестируем, что метод add_to_file не добавляет дублирующиеся вакансии"""
     vacancies = [{'id': '123', 'title': 'Python Developer'}]
@@ -78,7 +79,7 @@ def test_add_to_file_no_duplicates(mock_get_list_id_vacancies, json_worker):
         mock_get_list_id_vacancies.assert_called()
 
 
-def test_delete_from_file(json_worker):
+def test_delete_from_file(json_worker: JSONWorker) -> None:
     """Тестируем, что метод delete_from_file очищает файл"""
 
     with patch("builtins.open", mock_open()) as mock_file:
@@ -86,7 +87,7 @@ def test_delete_from_file(json_worker):
         mock_file.assert_called_once_with(json_worker.path_to_file, 'w', encoding='utf-8')
 
 
-def test_check_and_get_file_name_with_json_extension(json_worker):
+def test_check_and_get_file_name_with_json_extension(json_worker: JSONWorker) -> None:
     """Тест: если имя файла уже содержит .json, оно возвращается без изменений"""
 
     file_name = "vacancies.json"
@@ -94,7 +95,7 @@ def test_check_and_get_file_name_with_json_extension(json_worker):
     assert result == file_name
 
 
-def test_check_and_get_file_name_without_json_extension(json_worker):
+def test_check_and_get_file_name_without_json_extension(json_worker: JSONWorker) -> None:
     """Тест: если имя файла не содержит .json, расширение должно добавиться"""
 
     file_name = "vacancies"
@@ -102,7 +103,7 @@ def test_check_and_get_file_name_without_json_extension(json_worker):
     assert result == "vacancies.json"
 
 
-def test_check_and_get_file_name_with_empty_string(json_worker):
+def test_check_and_get_file_name_with_empty_string(json_worker: JSONWorker) -> None:
     """Тест: если имя файла пустое, метод должен корректно добавить .json"""
 
     file_name = ""
@@ -110,7 +111,7 @@ def test_check_and_get_file_name_with_empty_string(json_worker):
     assert result == ".json"
 
 
-def test_check_and_get_file_name_short_name(json_worker):
+def test_check_and_get_file_name_short_name(json_worker: JSONWorker) -> None:
     """Тест: если имя файла меньше 5 символов, метод должен корректно обработать"""
 
     file_name = "vac"
@@ -123,7 +124,7 @@ def test_check_and_get_file_name_short_name(json_worker):
     ([{"id": 1}], [{"id": 2}], [{"id": 1}, {"id": 2}]),
     ([{"id": 1}, {"id": 7}], [{"id": 2}, {"id": 7}], [{"id": 1}, {"id": 7}, {"id": 2}])
 ])
-def test_JSONWorker_add_to_file(tmpdir, vacancies, new_vacancies, expected_output):
+def test_JSONWorker_add_to_file(tmpdir: Any, vacancies: list, new_vacancies: list, expected_output: list) -> None:
     temp_file = tmpdir.join("vacancies.json")
 
     initial_data = json.dumps(vacancies)
