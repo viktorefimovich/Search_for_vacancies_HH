@@ -264,8 +264,8 @@ def test_get_list_of_dicts_vacancies(vacancy_data: dict, vacancy_data2: dict) ->
 def test_get_list_of_dicts_vacancies_empty_list() -> None:
     """Тест для случая, когда список объектов вакансий пуст"""
 
-    vacancies = []
-    expected_list_of_dicts = []
+    vacancies: list = []
+    expected_list_of_dicts: list = []
 
     result = Vacancy.get_list_of_dicts_vacancies(vacancies)
     assert result == expected_list_of_dicts
@@ -311,7 +311,7 @@ def test_vacancies_from_hh_processing(vacancies_from_hh: list) -> None:
 def test_vacancies_from_hh_processing_empty_list() -> None:
     """Тест для случая с пустым списком вакансий"""
 
-    vacancies = []
+    vacancies: list = []
     result = Vacancy.vacancies_from_hh_processing(vacancies)
 
     assert result == []

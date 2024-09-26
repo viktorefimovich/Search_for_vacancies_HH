@@ -4,14 +4,14 @@ from src.json_worker import JSONWorker
 
 
 @pytest.fixture
-def json_worker():
+def json_worker() -> JSONWorker:
     """Фикстура для создания объекта JSONWorker"""
 
     return JSONWorker("test_file.json")
 
 
 @pytest.fixture
-def vacancy_data():
+def vacancy_data() -> dict:
     return {
         "id": 1,
         "name": "Software Engineer",
@@ -29,7 +29,7 @@ def vacancy_data():
 
 
 @pytest.fixture
-def vacancy_data2():
+def vacancy_data2() -> dict:
     return {
         "id": 2,
         "name": "Software Engineer",
@@ -47,7 +47,7 @@ def vacancy_data2():
 
 
 @pytest.fixture
-def vacancy_data3():
+def vacancy_data3() -> dict:
     return {
         "id": 3,
         "name": "Software Engineer",
@@ -65,7 +65,7 @@ def vacancy_data3():
 
 
 @pytest.fixture
-def vacancy_data_none():
+def vacancy_data_none() -> dict:
     return {
         "id": 2,
         "name": None,
@@ -83,7 +83,7 @@ def vacancy_data_none():
 
 
 @pytest.fixture
-def partial_vacancy_data():
+def partial_vacancy_data() -> dict:
     return {
         "id": 1,
         "name": "Software Engineer",
@@ -96,12 +96,12 @@ def partial_vacancy_data():
 
 
 @pytest.fixture
-def empty_vacancy_data():
+def empty_vacancy_data() -> dict:
     return {}
 
 
 @pytest.fixture
-def vacancies_from_hh():
+def vacancies_from_hh() -> list:
     return [
         {
             "id": "12345",
