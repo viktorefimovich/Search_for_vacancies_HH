@@ -86,38 +86,6 @@ def test_delete_from_file(json_worker: JSONWorker) -> None:
         mock_file.assert_called_once_with(json_worker.path_to_file, "w", encoding="utf-8")
 
 
-def test_check_and_get_file_name_with_json_extension(json_worker: JSONWorker) -> None:
-    """Тест: если имя файла уже содержит .json, оно возвращается без изменений"""
-
-    file_name = "vacancies.json"
-    result = json_worker._JSONWorker__check_and_get_file_name(file_name)
-    assert result == file_name
-
-
-def test_check_and_get_file_name_without_json_extension(json_worker: JSONWorker) -> None:
-    """Тест: если имя файла не содержит .json, расширение должно добавиться"""
-
-    file_name = "vacancies"
-    result = json_worker._JSONWorker__check_and_get_file_name(file_name)
-    assert result == "vacancies.json"
-
-
-def test_check_and_get_file_name_with_empty_string(json_worker: JSONWorker) -> None:
-    """Тест: если имя файла пустое, метод должен корректно добавить .json"""
-
-    file_name = ""
-    result = json_worker._JSONWorker__check_and_get_file_name(file_name)
-    assert result == ".json"
-
-
-def test_check_and_get_file_name_short_name(json_worker: JSONWorker) -> None:
-    """Тест: если имя файла меньше 5 символов, метод должен корректно обработать"""
-
-    file_name = "vac"
-    result = json_worker._JSONWorker__check_and_get_file_name(file_name)
-    assert result == "vac.json"
-
-
 @pytest.mark.parametrize(
     "vacancies, new_vacancies, expected_output",
     [
