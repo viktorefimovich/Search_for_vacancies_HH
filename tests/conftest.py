@@ -1,3 +1,6 @@
+import os
+from tempfile import NamedTemporaryFile
+
 import pytest
 
 from src.json_worker import JSONWorker
@@ -129,3 +132,12 @@ def vacancies_from_hh() -> list:
             },
         },
     ]
+
+
+@pytest.fixture
+def temp_excel_file():
+    """Создает временный excel файл для тестирования"""
+    
+    with NamedTemporaryFile(suffix=".xlsx", delete=False) as tmp:
+        yield tmp.name
+    os.remove(tmp.name)
