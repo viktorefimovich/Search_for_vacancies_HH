@@ -24,7 +24,7 @@ def vacancy_data():
         "name_employer": "ExampleCompany",
         "experience": "3-5 лет",
         "requirement": "Python, Django",
-        "responsibility": "Develop backend services"
+        "responsibility": "Develop backend services",
     }
 
 
@@ -42,7 +42,7 @@ def vacancy_data2():
         "name_employer": "ExampleCompany",
         "experience": "3-5 лет",
         "requirement": "Python, Django",
-        "responsibility": "Develop backend services"
+        "responsibility": "Develop backend services",
     }
 
 
@@ -60,7 +60,7 @@ def vacancy_data3():
         "name_employer": "ExampleCompany",
         "experience": "3-5 лет",
         "requirement": "Python, Django",
-        "responsibility": "Develop backend services"
+        "responsibility": "Develop backend services",
     }
 
 
@@ -78,7 +78,7 @@ def vacancy_data_none():
         "name_employer": None,
         "experience": None,
         "requirement": None,
-        "responsibility": None
+        "responsibility": None,
     }
 
 
@@ -107,36 +107,25 @@ def vacancies_from_hh():
             "id": "12345",
             "name": "Python Developer",
             "area": {"name": "Moscow"},
-            "salary": {
-                "from": 100000,
-                "to": 150000,
-                "currency": "RUR"
-            },
+            "salary": {"from": 100000, "to": 150000, "currency": "RUR"},
             "published_at": "2023-09-01T00:00:00",
             "alternate_url": "https://hh.ru/vacancy/12345",
             "employer": {"name": "Tech Company"},
             "experience": {"name": "3-5 лет"},
-            "snippet": {
-                "requirement": "Опыт работы с Python, Django",
-                "responsibility": "Разработка веб-приложений"
-            }
+            "snippet": {"requirement": "Опыт работы с Python, Django", "responsibility": "Разработка веб-приложений"},
         },
         {
             "id": "67890",
             "name": "Data Scientist",
             "area": {"name": "Saint Petersburg"},
-            "salary": {
-                "from": 120000,
-                "to": 180000,
-                "currency": "RUR"
-            },
+            "salary": {"from": 120000, "to": 180000, "currency": "RUR"},
             "published_at": "2023-09-02T00:00:00",
             "alternate_url": "https://hh.ru/vacancy/67890",
             "employer": {"name": "Data Company"},
             "experience": {"name": "1-3 года"},
             "snippet": {
                 "requirement": "Опыт работы с машинным обучением",
-                "responsibility": "Анализ данных и построение моделей"
-            }
-        }
+                "responsibility": "Анализ данных и построение моделей",
+            },
+        },
     ]

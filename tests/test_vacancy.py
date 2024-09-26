@@ -58,11 +58,7 @@ def test_vacancy_init_empty(empty_vacancy_data: dict) -> None:
 def test_vacancy_init_invalid_keys() -> None:
     """Тест на некорректные данные"""
 
-    invalid_data = {
-        "invalid_key": "value",
-        "id": 1,
-        "name": "Software Engineer"
-    }
+    invalid_data = {"invalid_key": "value", "id": 1, "name": "Software Engineer"}
 
     vacancy = Vacancy(invalid_data)
 
@@ -76,8 +72,10 @@ def test_vacancy_str(vacancy_data: dict) -> None:
     """Тест для проверки строки вывода __str__"""
 
     vacancy = Vacancy(vacancy_data)
-    expected_str = (f"{vacancy_data['name']} - Зарплата: {vacancy_data['salary_string']} - "
-                    f"Город: {vacancy_data['location']}- Ссылка на вакансию: {vacancy_data['url']}")
+    expected_str = (
+        f"{vacancy_data['name']} - Зарплата: {vacancy_data['salary_string']} - "
+        f"Город: {vacancy_data['location']}- Ссылка на вакансию: {vacancy_data['url']}"
+    )
 
     assert str(vacancy) == expected_str
 
@@ -191,7 +189,7 @@ def test_to_dict(vacancy_data: dict) -> None:
         "name_employer": "ExampleCompany",
         "experience": "3-5 лет",
         "requirement": "Python, Django",
-        "responsibility": "Develop backend services"
+        "responsibility": "Develop backend services",
     }
 
     assert vacancy.to_dict() == expected_dict
@@ -214,7 +212,7 @@ def test_to_dict_with_none_values(vacancy_data_none: dict) -> None:
         "name_employer": None,
         "experience": None,
         "requirement": None,
-        "responsibility": None
+        "responsibility": None,
     }
 
     assert vacancy.to_dict() == expected_dict
@@ -241,7 +239,7 @@ def test_get_list_of_dicts_vacancies(vacancy_data: dict, vacancy_data2: dict) ->
             "name_employer": "ExampleCompany",
             "experience": "3-5 лет",
             "requirement": "Python, Django",
-            "responsibility": "Develop backend services"
+            "responsibility": "Develop backend services",
         },
         {
             "id": 2,
@@ -255,8 +253,8 @@ def test_get_list_of_dicts_vacancies(vacancy_data: dict, vacancy_data2: dict) ->
             "name_employer": "ExampleCompany",
             "experience": "3-5 лет",
             "requirement": "Python, Django",
-            "responsibility": "Develop backend services"
-        }
+            "responsibility": "Develop backend services",
+        },
     ]
 
     result = Vacancy.get_list_of_dicts_vacancies(vacancies)
@@ -291,7 +289,7 @@ def test_vacancies_from_hh_processing(vacancies_from_hh: list) -> None:
             "name_employer": "Tech Company",
             "experience": "3-5 лет",
             "requirement": "Опыт работы с Python, Django",
-            "responsibility": "Разработка веб-приложений"
+            "responsibility": "Разработка веб-приложений",
         },
         {
             "id": "67890",
@@ -305,8 +303,8 @@ def test_vacancies_from_hh_processing(vacancies_from_hh: list) -> None:
             "name_employer": "Data Company",
             "experience": "1-3 года",
             "requirement": "Опыт работы с машинным обучением",
-            "responsibility": "Анализ данных и построение моделей"
-        }
+            "responsibility": "Анализ данных и построение моделей",
+        },
     ]
 
 
