@@ -1,5 +1,6 @@
 import os
 from tempfile import NamedTemporaryFile
+from typing import Generator
 
 import pytest
 
@@ -135,7 +136,7 @@ def vacancies_from_hh() -> list:
 
 
 @pytest.fixture
-def temp_excel_file():
+def temp_excel_file() -> Generator:
     """Создает временный excel файл для тестирования"""
 
     with NamedTemporaryFile(suffix=".xlsx", delete=False) as tmp:
