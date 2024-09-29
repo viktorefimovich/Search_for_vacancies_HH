@@ -33,13 +33,76 @@ class Vacancy:
     )
 
     def __init__(self, vacancy: dict) -> None:
-        """Метод инициализации объектов класса"""
+        """Метод инициализации объектов класса с валидацией атрибутов"""
 
         for vacancy_attribute in self.__slots__:
             if self.__check_attribute(vacancy_attribute, list(vacancy.keys())):
-                setattr(self, vacancy_attribute, vacancy[vacancy_attribute])
+                validated_value = self.__validate_attribute(vacancy_attribute, vacancy[vacancy_attribute])
+                setattr(self, vacancy_attribute, validated_value)
             else:
                 setattr(self, vacancy_attribute, None)
+
+    def __validate_attribute(self, attribute: str, value: Any) -> Any:
+        """Приватный метод для валидации данных при инициализации атрибутов"""
+
+        match attribute:
+            case "id":
+                return self.__validate_id(value)
+            case "name":
+                return self.__validate_string(value)
+            case "location":
+                return self.__validate_string(value)
+            case "salary_from":
+                return self.__validate_salary(value)
+            case "salary_to":
+                return self.__validate_salary(value)
+            case "salary_string":
+                return self.__validate_string(value)
+            case "published_at":
+                return self.__validate_string(value)
+            case "url":
+                return self.__validate_url(value)
+            case "name_employer":
+                return self.__validate_string(value)
+            case "experience":
+                return self.__validate_string(value)
+            case "requirement":
+                return self.__validate_string(value)
+            case "responsibility":
+                return self.__validate_string(value)
+            case _:
+                return None
+
+    @staticmethod
+    def __validate_id(value: Any) -> int:
+        """Приватная валидация для ID"""
+
+        if isinstance(value, int) and value > 0:
+            return value
+        raise ValueError(f"Неверное значение ID: {value}")
+
+    @staticmethod
+    def __validate_string(value: Any) -> str:
+        """Приватная валидация для строки"""
+
+        if isinstance(value, str) and len(value) > 0:
+            return value
+        raise ValueError(f"Неверное значение: {value}")
+
+    @staticmethod
+    def __validate_salary(value: Any) -> float:
+        """Приватная валидация для зарплаты"""
+
+        if isinstance(value, (int, float)) and value >= 0:
+            return float(value)
+        raise ValueError(f"Неверное значение: {value}")
+
+    @staticmethod
+    def __validate_url(value: Any) -> str:
+        """Приватная валидация для URL"""
+        if isinstance(value, str) and value.startswith("http"):
+            return value
+        raise ValueError(f"Неверный URL: {value}")
 
     def __str__(self) -> str:
         """Метод вывода краткой информации о вакансии"""
